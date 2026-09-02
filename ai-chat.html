@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soheb Coaching - Aura AI</title>
+    <style>
+        body {
+            background-color: #f8fafc !important;
+            color: #1e293b !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .app-container {
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            min-height: 100vh;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .app-view {
+            display: none;
+            padding: 16px;
+            flex: 1;
+            flex-direction: column;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .app-view.active {
+            display: flex;
+        }
+        #view-aura-chat {
+            background: #ffffff;
+            position: relative;
+            padding-bottom: 130px; /* Space for fixed search bar & bottom nav */
+        }
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-top: 6px;
+            z-index: 10;
+        }
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brand-badge {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #0284c7, #38bdf8);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        }
+        .app-header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .back-btn, .settings-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            color: #475569;
+        }
+        .light-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 1000;
+        }
+        .nav-item {
+            color: #94a3b8;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            gap: 3px;
+            cursor: pointer;
+        }
+        .nav-item.active {
+            color: #0284c7;
+        }
+        .chat-messages {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding-bottom: 20px;
+        }
+        .message-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .message-wrapper.outgoing {
+            align-items: flex-end;
+        }
+        .message-wrapper.incoming {
+            align-items: flex-start;
+        }
+        .message {
+            max-width: 95%;
+            font-size: 14.5px;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .message.incoming {
+            background-color: transparent;
+            color: #1e293b;
+            padding: 0;
+            border: none;
+        }
+        .message.outgoing {
+            background-color: #0284c7;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 14px;
+            border-bottom-right-radius: 4px;
+        }
+        .message-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .action-btn {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .action-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        
+        /* FIXED SEARCH BAR AT BOTTOM (Above Bottom Nav) */
+        .chat-input-container-fixed {
+            position: fixed;
+            bottom: 56px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            padding: 8px 16px;
+            box-sizing: border-box;
+            z-index: 999;
+            border-top: 1px solid #f1f5f9;
+        }
+        .chat-input-area {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 28px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .chat-input-area input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            outline: none;
+            color: #0f172a;
+        }
+        .chat-input-area input::placeholder {
+            color: #94a3b8;
+        }
+        .mic-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #64748b;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        .mic-btn.listening {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        .send-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);
+        }
+        .statement-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #0f172a;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .primary-btn {
+            width: 100%;
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Chat View -->
+        <div id="view-aura-chat" class="app-view active">
+            <div class="app-header">
+                <div style="width: 36px;"></div>
+                <div class="brand-logo-container">
+                    <div class="brand-badge">▲</div>
+                    <h1>Aura AI</h1>
+                </div>
+                <button onclick="switchView('view-aura-settings')" class="settings-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+            </div>
+
+            <!-- Messages container -->
+            <div class="chat-messages" id="chatContainer"></div>
+
+            <!-- Fixed Input Bar -->
+            <div class="chat-input-container-fixed">
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="Ask Aura AI anything..." onkeypress="handleKeyPress(event)">
+                    <button id="micBtn" class="mic-btn" onclick="toggleSpeechRecognition()" title="Speak to Aura">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </button>
+                    <button class="send-btn" onclick="sendMessage()">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings View -->
+        <div id="view-aura-settings" class="app-view">
+            <div class="app-header">
+                <button onclick="switchView('view-aura-chat')" class="back-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <h1>AI Configurations</h1>
+                <div style="width: 36px;"></div>
+            </div>
+
+            <div class="statement-box">
+                <h3 style="font-size: 16px; margin: 0 0 12px 0; color: #0f172a;">Groq API Settings</h3>
+                <div class="form-group">
+                    <label for="apiKeyInput">Groq API Key</label>
+                    <input type="password" id="apiKeyInput" placeholder="Enter API key here...">
+                </div>
+                <button class="primary-btn" onclick="saveApiSettings()">Save Configurations</button>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="light-nav">
+            <a href="index.html" class="nav-item">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Home
+            </a>
+            <div class="nav-item active" onclick="switchView('view-aura-chat')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Aura AI
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let defaultApiKey = "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";
+
+        function switchView(viewId) {
+            let views = document.getElementsByClassName('app-view');
+            for (let i = 0; i < views.length; i++) {
+                views[i].classList.remove('active');
+            }
+            document.getElementById(viewId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // --- BROWSER STORAGE & 200 MESSAGES LIMIT HISTORY LOGIC ---
+        function getChatHistory() {
+            let history = localStorage.getItem('aura_chat_history');
+            if (!history) {
+                return [
+                    { role: 'incoming', text: "Hello! Main Aura AI hoon, jo Soheb Teacher ke students ki madad ke liye design kiya gaya hoon. Aap mujhse koi bhi sawal pooch sakte hain!" }
+                ];
+            }
+            return JSON.parse(history);
+        }
+
+        function saveChatHistory(history) {
+            // Agar messages 200 se zyada ho jayein, toh piche wale delete kar do
+            if (history.length > 200) {
+                history = history.slice(history.length - 200);
+            }
+            localStorage.setItem('aura_chat_history', JSON.stringify(history));
+        }
+
+        function renderHistory() {
+            let chatContainer = document.getElementById('chatContainer');
+            chatContainer.innerHTML = '';
+            let history = getChatHistory();
+
+            history.forEach(item => {
+                let wrapper = document.createElement('div');
+                wrapper.className = `message-wrapper ${item.role}`;
+
+                let msg = document.createElement('div');
+                msg.className = `message ${item.role}`;
+                msg.innerText = item.text;
+                wrapper.appendChild(msg);
+
+                if (item.role === 'incoming') {
+                    let actions = document.createElement('div');
+                    actions.className = 'message-actions';
+                    actions.innerHTML = `
+                        <button class="action-btn" onclick="copyText(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button>
+                        <button class="action-btn" onclick="speakText(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg> Listen</button>
+                    `;
+                    wrapper.appendChild(actions);
+                }
+                chatContainer.appendChild(wrapper);
+            });
+        }
+
+        // Speech Recognition (Mic)
+        let recognition;
+        let isListening = false;
+        function toggleSpeechRecognition() {
+            const micBtn = document.getElementById('micBtn');
+            const inputField = document.getElementById('userInput');
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert('Speech recognition not supported in this browser.');
+                return;
+            }
+            if (isListening) {
+                if (recognition) recognition.stop();
+                return;
+            }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.lang = 'hi-IN';
+            recognition.interimResults = false;
+
+            recognition.onstart = () => { isListening = true; micBtn.classList.add('listening'); inputField.placeholder = "Sun rahe hain..."; };
+            recognition.onresult = (e) => { inputField.value = e.results[0][0].transcript; };
+            recognition.onerror = () => { stopMic(); };
+            recognition.onend = () => { stopMic(); if(inputField.value.trim() !== '') sendMessage(); };
+            recognition.start();
+        }
+        function stopMic() {
+            isListening = false;
+            document.getElementById('micBtn').classList.remove('listening');
+            document.getElementById('userInput').placeholder = "Ask Aura AI anything...";
+        }
+
+        function copyText(btn) {
+            let text = btn.closest('.message-wrapper').querySelector('.message').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerText = "Copied!";
+                setTimeout(() => { btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`; }, 2000);
+            });
+        }
+
+        function speakText(btn) {
+            let text = btn.closest('.message-wrapper').querySelector('.message').innerText;
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                let utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = /[\u0900-\u097F]/.test(text) ? 'hi-IN' : 'en-US';
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        async function sendMessage() {
+            let inputField = document.getElementById('userInput');
+            let text = inputField.value.trim();
+            if (text === '') return;
+
+            let history = getChatHistory();
+            history.push({ role: 'outgoing', text: text });
+            saveChatHistory(history);
+            renderHistory();
+            inputField.value = '';
+
+            // Note: Auto-scroll nahi kiya gaya hai taaki user ki screen wahi rahe jahan woh hai.
+
+            let chatContainer = document.getElementById('chatContainer');
+            let loadingWrapper = document.createElement('div');
+            loadingWrapper.className = 'message-wrapper incoming';
+            loadingWrapper.id = 'loadingMsg';
+            let loadingMsg = document.createElement('div');
+            loadingMsg.className = 'message incoming';
+            loadingMsg.style.color = "#64748b";
+            loadingMsg.innerText = "Aura AI soch rahi hai...";
+            loadingWrapper.appendChild(loadingMsg);
+            chatContainer.appendChild(loadingWrapper);
+
+            let apiKey = localStorage.getItem('aura_api_key') || defaultApiKey;
+            let systemPrompt = "Tum Aura AI ho, jo Soheb Coaching Centre aur chote schools/coachings ke students ke liye banayi gayi ek smart AI ho. Is platform ko Shivam Kumar Jha ne banaya hai. Hamesha user ki bhasha mein vistaar se aur spasht roop mein jawab do.";
+
+            try {
+                let response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${apiKey}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "openai/gpt-oss-120b",
+                        messages: [
+                            { role: "system", content: systemPrompt },
+                            { role: "user", content: text }
+                        ]
+                    })
+                });
+
+                let data = await response.json();
+                let loadEl = document.getElementById('loadingMsg');
+                if (loadEl) loadEl.remove();
+
+                if (data.choices && data.choices.length > 0) {
+                    let aiReply = data.choices[0].message.content;
+                    let currentHistory = getChatHistory();
+                    currentHistory.push({ role: 'incoming', text: aiReply });
+                    saveChatHistory(currentHistory);
+                    renderHistory();
+                } else if (data.error) {
+                    let currentHistory = getChatHistory();
+                    currentHistory.push({ role: 'incoming', text: "Error: " + data.error.message });
+                    saveChatHistory(currentHistory);
+                    renderHistory();
+                }
+            } catch (err) {
+                let loadEl = document.getElementById('loadingMsg');
+                if (loadEl) loadEl.remove();
+                let currentHistory = getChatHistory();
+                currentHistory.push({ role: 'incoming', text: "Network connection error! Kripya apna internet check karein." });
+                saveChatHistory(currentHistory);
+                renderHistory();
+            }
+        }
+
+        function saveApiSettings() {
+            let key = document.getElementById('apiKeyInput').value.trim();
+            if(key !== '') {
+                localStorage.setItem('aura_api_key', key);
+                alert('API key successfully save ho gayi hai!');
+                switchView('view-aura-chat');
+            } else {
+                alert('Kripya valid API key enter karein.');
+            }
+        }
+
+        window.onload = function() {
+            document.getElementById('apiKeyInput').value = localStorage.getItem('aura_api_key') || defaultApiKey;
+            renderHistory();
+        }
+    </script>
+<script>
+    // 1. History aur Back Button System (Native App Behavior)
+    window.history.replaceState({ page: 'root' }, "", "");
+
+    window.addEventListener('popstate', function(event) {
+        // Jab user piche jaye aur history khatam ho jaye, tab app minimize/close ho
+        if (!event.state) {
+            window.history.back();
+        }
+    });
+
+    // 2. Browser Storage & 200 Messages Limit History Logic
+    function getChatHistory() {
+        let history = localStorage.getItem('aura_chat_history');
+        if (!history) {
+            return [
+                { role: 'incoming', text: "Hello! Main Aura AI hoon, jo Soheb Teacher ke students ki madad ke liye design kiya gaya hoon. Aap mujhse koi bhi sawal pooch sakte hain!" }
+            ];
+        }
+        return JSON.parse(history);
+    }
+
+    function saveChatHistory(history) {
+        if (history.length > 200) {
+            history = history.slice(history.length - 200); // 200 se zyada hote hi purana delete hota jayega
+        }
+        localStorage.setItem('aura_chat_history', JSON.stringify(history));
+    }
+
+    function renderHistory() {
+        let chatContainer = document.getElementById('chatContainer');
+        if (!chatContainer) return;
+        chatContainer.innerHTML = '';
+        let history = getChatHistory();
+
+        history.forEach(item => {
+            let wrapper = document.createElement('div');
+            wrapper.className = `message-wrapper ${item.role}`;
+
+            let msg = document.createElement('div');
+            msg.className = `message ${item.role}`;
+            msg.innerText = item.text;
+            wrapper.appendChild(msg);
+
+            if (item.role === 'incoming') {
+                let actions = document.createElement('div');
+                actions.className = 'message-actions';
+                actions.innerHTML = `
+                    <button class="action-btn" onclick="copyText(this)">Copy</button>
+                    <button class="action-btn" onclick="speakText(this)">Listen</button>
+                `;
+                wrapper.appendChild(actions);
+            }
+            chatContainer.appendChild(wrapper);
+        });
+    }
+
+    window.onload = function() {
+        renderHistory();
+    };
+</script>
+
+</body>
+</html>
