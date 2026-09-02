@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soheb Coaching - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Apple Style Premium Splash Screen (Yeh shuru mein dikhega) -->
+    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease;">
+        <div class="splash-logo-box">
+            <!-- Sleek Minimal Apple Icon -->
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#0071e3"/>
+                <path d="M2 17L12 22L22 17" stroke="#42aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="#42aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h1 class="splash-title" style="font-size: 24px; font-weight: 700; color: #1d1d1f; margin-top: 15px;">Soheb Coaching</h1>
+        <p class="splash-subtitle" style="font-size: 14px; color: #86868b; margin-top: 5px;">Excellence in Education</p>
+        <div class="powered-by" style="position: absolute; bottom: 40px; font-size: 12px; color: #aeaeb2;">powered by Brahma <We></We>X</div>
+    </div>
+
+    <!-- Apple Mockup App Container (Main Home Page Content) -->
+    <div class="app-container">
+
+        <!-- Scrollable Main Content Wrapper (Fixed banner & cutting issue) -->
+        <div class="main-scroll-content" style="overflow-y: auto; flex-grow: 1; padding-bottom: 20px;">
+            
+            <!-- Top Header -->
+            <div class="app-header" style="margin-top: 10px;">
+                <h1>Soheb Coaching</h1>
+                <div class="avatar-badge">SC</div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" placeholder="Search students, teachers, records...">
+            </div>
+
+            <!-- Scrollable Banners -->
+            <div class="banner-scroll-container">
+                <div class="banner-card banner-1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://i.ibb.co/rKtgMPpm/file-0000000009f48211b04cd31da444a947.png'); background-size: cover; background-position: center;">
+    <span class="banner-tag">Featured</span>
+    <div class="banner-content">
+        <h3>Excellence in Education</h3>
+        <p>Join Soheb Coaching</p>
+    </div>
+</div>
+
+                <div class="banner-card banner-2">
+                    <span class="banner-tag">Advanced</span>
+                    <div class="banner-content">
+                        <h3>Smart Learning, Future Ready</h3>
+                        <p>Join Soheb Coaching</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statements & Control Section -->
+            <h2 class="section-title">Statements & Control</h2>
+            
+            <div class="grid-menu">
+                <!-- Teacher Statements Card -->
+                <div class="light-card blue-tint" onclick="window.location.href='teachers.html'">
+                    <div class="illustration-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 3.13C16.8604 3.3516 17.6207 3.85186 18.1637 4.55233C18.7067 5.25281 19.0016 6.11372 19.0016 7C19.0016 7.88628 18.7067 8.74719 18.1637 9.44767C17.6207 10.1481 16.8604 10.6484 16 10.87" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="card-text">
+                        <h4>Teacher Statements</h4>
+                        <p>Manage staff & records</p>
+                    </div>
+                </div>
+
+                <!-- Student Statements Card -->
+                <div class="light-card green-tint" onclick="window.location.href='students.html'">
+                    <div class="illustration-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 10V18C22 18.5304 21.7893 19.0391 21.4142 19.4142C21.0391 19.7893 20.5304 20 20 20H4C3.46957 20 2.96086 19.7893 2.58579 19.4142C2.21071 19.0391 2 18.5304 2 18V10" stroke="#34c759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#34c759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 12V16" stroke="#34c759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="card-text">
+                        <h4>Student Statements</h4>
+                        <p>Attendance & fee details</p>
+                    </div>
+                </div>
+
+                <!-- Result Reports Card -->
+                <div class="light-card orange-tint" onclick="window.location.href='result-report.html'">
+                    <div class="illustration-box" style="color: #ff9500;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="8" r="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="card-text">
+                        <h4>Result Reports</h4>
+                        <p>Exam rankings & scores</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Light Bottom Navigation (Fixed at bottom nicely) -->
+        <div class="light-nav">
+            <a href="index.html" class="nav-item active">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="ai-chat.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Aura AI</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- JavaScript to handle splash screen only once per session -->
+    <script>
+        if (sessionStorage.getItem('splashShown')) {
+            const splash = document.getElementById('splash-screen');
+            if (splash) {
+                splash.style.display = 'none';
+            }
+        } else {
+            sessionStorage.setItem('splashShown', 'true');
+            setTimeout(function() {
+                const splash = document.getElementById('splash-screen');
+                if (splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(function() {
+                        splash.style.display = 'none';
+                    }, 500);
+                }
+            }, 1800);
+        }
+    </script>
+
+</body>
+</html>
+
