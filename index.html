@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soheb Coaching - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
-    <!-- Apple Style Premium Splash Screen (Yeh shuru mein dikhega) -->
+    <!-- Apple Style Premium Splash Screen -->
     <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease;">
         <div class="splash-logo-box">
-            <!-- Sleek Minimal Apple Icon -->
             <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#0071e3"/>
                 <path d="M2 17L12 22L22 17" stroke="#42aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -20,13 +19,12 @@
         </div>
         <h1 class="splash-title" style="font-size: 24px; font-weight: 700; color: #1d1d1f; margin-top: 15px;">Soheb Coaching</h1>
         <p class="splash-subtitle" style="font-size: 14px; color: #86868b; margin-top: 5px;">Excellence in Education</p>
-        <div class="powered-by" style="position: absolute; bottom: 40px; font-size: 12px; color: #aeaeb2;">powered by Brahma <We></We>X</div>
+        <div class="powered-by" style="position: absolute; bottom: 40px; font-size: 12px; color: #aeaeb2;">powered by Brahma WebX</div>
     </div>
 
-    <!-- Apple Mockup App Container (Main Home Page Content) -->
+    <!-- Apple Mockup App Container -->
     <div class="app-container">
 
-        <!-- Scrollable Main Content Wrapper (Fixed banner & cutting issue) -->
         <div class="main-scroll-content" style="overflow-y: auto; flex-grow: 1; padding-bottom: 20px;">
             
             <!-- Top Header -->
@@ -46,12 +44,12 @@
             <!-- Scrollable Banners -->
             <div class="banner-scroll-container">
                 <div class="banner-card banner-1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://i.ibb.co/rKtgMPpm/file-0000000009f48211b04cd31da444a947.png'); background-size: cover; background-position: center;">
-    <span class="banner-tag">Featured</span>
-    <div class="banner-content">
-        <h3>Excellence in Education</h3>
-        <p>Join Soheb Coaching</p>
-    </div>
-</div>
+                    <span class="banner-tag">Featured</span>
+                    <div class="banner-content">
+                        <h3>Excellence in Education</h3>
+                        <p>Join Soheb Coaching</p>
+                    </div>
+                </div>
 
                 <div class="banner-card banner-2">
                     <span class="banner-tag">Advanced</span>
@@ -65,6 +63,7 @@
             <!-- Statements & Control Section -->
             <h2 class="section-title">Statements & Control</h2>
             
+            <!-- Grid Menu for Cards -->
             <div class="grid-menu">
                 <!-- Teacher Statements Card -->
                 <div class="light-card blue-tint" onclick="window.location.href='teachers.html'">
@@ -98,9 +97,9 @@
                 </div>
 
                 <!-- Result Reports Card -->
-                <div class="light-card orange-tint" onclick="window.location.href='result-report.html'">
+                <div class="light-card orange-tint" onclick="window.location.href='result-report.html'" style="grid-column: span 2;">
                     <div class="illustration-box" style="color: #ff9500;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.0/2000/svg">
                             <circle cx="12" cy="8" r="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -114,7 +113,7 @@
 
         </div>
 
-        <!-- Light Bottom Navigation (Fixed at bottom nicely) -->
+        <!-- Light Bottom Navigation -->
         <div class="light-nav">
             <a href="index.html" class="nav-item active">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,7 +132,7 @@
 
     </div>
 
-    <!-- JavaScript to handle splash screen only once per session -->
+    <!-- JavaScript for Splash Screen -->
     <script>
         if (sessionStorage.getItem('splashShown')) {
             const splash = document.getElementById('splash-screen');
@@ -156,4 +155,3 @@
 
 </body>
 </html>
-
