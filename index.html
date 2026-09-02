@@ -4,266 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soheb Coaching - Home</title>
-    <!-- Sabhi styles ko seedha yahan jod diya gaya hai taaki koi error na aaye -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            background-color: #000000;
-            color: #f5f5f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 414px;
-            height: 100vh;
-            max-height: 896px;
-            background-color: #ffffff;
-            color: #1d1d1f;
-            display: flex;
-            flex-direction: column;
-            padding: 20px 20px 90px 20px;
-            position: relative;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .app-container::-webkit-scrollbar { display: none; }
-
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #ffffff;
-            color: #1d1d1f;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .splash-logo-box {
-            width: 88px;
-            height: 88px;
-            background: rgba(0, 113, 227, 0.08);
-            border: 1px solid rgba(0, 113, 227, 0.15);
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 5px;
-            margin-bottom: 16px;
-        }
-
-        .app-header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.6px;
-            color: #1d1d1f;
-        }
-
-        .avatar-badge {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, #0071e3, #42aaff);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-        }
-
-        .search-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .search-container input {
-            width: 100%;
-            padding: 14px 16px 14px 46px;
-            background-color: #f5f5f7;
-            border: 1px solid #d2d2d7;
-            border-radius: 14px;
-            color: #1d1d1f;
-            font-size: 15px;
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #86868b;
-        }
-
-        .banner-scroll-container {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            margin-bottom: 24px;
-            padding-bottom: 4px;
-            scroll-snap-type: x mandatory;
-        }
-        .banner-scroll-container::-webkit-scrollbar { display: none; }
-
-        .banner-card {
-            min-width: 240px;
-            height: 150px;
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            position: relative;
-            color: #fff;
-            scroll-snap-align: start;
-        }
-
-        .banner-1 { background: linear-gradient(135deg, #1d1d1f, #434345); }
-        .banner-2 { background: linear-gradient(135deg, #0071e3, #0040dd); }
-
-        .banner-tag {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            color: #ffffff;
-            font-size: 10px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            width: fit-content;
-        }
-
-        .banner-content h3 { font-size: 17px; font-weight: 600; margin-bottom: 2px; }
-        .banner-content p { font-size: 12px; color: #d2d2d7; }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 14px;
-            color: #1d1d1f;
-            letter-spacing: -0.4px;
-        }
-
-        .grid-menu {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            padding-bottom: 20px;
-        }
-
-        .light-card {
-            border-radius: 20px;
-            padding: 20px 16px;
-            height: 175px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .blue-tint { background-color: #f0f7ff; border: 1px solid #b3d7ff; }
-        .green-tint { background-color: #f2f9f4; border: 1px solid #bfead0; }
-        .orange-tint { background-color: #fdf8f0; border: 1px solid #ffe0b2; grid-column: span 2; }
-
-        .illustration-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .card-text h4 { font-size: 16px; font-weight: 600; color: #1d1d1f; margin-bottom: 3px; }
-        .card-text p { font-size: 12px; color: #86868b; font-weight: 500; }
-
-        .light-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 414px;
-            height: 72px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(25px);
-            border-top: 1px solid rgba(0,0,0,0.08);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            color: #86868b;
-            text-align: center;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 50%;
-            font-weight: 500;
-        }
-
-        .nav-item.active { color: #0071e3; font-weight: 600; }
-        .nav-item svg { margin-bottom: 3px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Splash Screen -->
-    <div id="splash-screen">
+    <!-- Apple Style Premium Splash Screen (Yeh shuru mein dikhega) -->
+    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease;">
         <div class="splash-logo-box">
+            <!-- Sleek Minimal Apple Icon -->
             <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#0071e3"/>
                 <path d="M2 17L12 22L22 17" stroke="#42aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M2 12L12 17L22 12" stroke="#42aaff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
-        <h1 style="font-size: 24px; font-weight: 700; color: #1d1d1f; margin-top: 15px;">Soheb Coaching</h1>
-        <p style="font-size: 14px; color: #86868b; margin-top: 5px;">Excellence in Education</p>
-        <div style="position: absolute; bottom: 40px; font-size: 12px; color: #aeaeb2;">powered by Brahma WebX</div>
+        <h1 class="splash-title" style="font-size: 24px; font-weight: 700; color: #1d1d1f; margin-top: 15px;">Soheb Coaching</h1>
+        <p class="splash-subtitle" style="font-size: 14px; color: #86868b; margin-top: 5px;">Excellence in Education</p>
+        <div class="powered-by" style="position: absolute; bottom: 40px; font-size: 12px; color: #aeaeb2;">powered by Brahma <We></We>X</div>
     </div>
 
-    <!-- Main Container -->
+    <!-- Apple Mockup App Container (Main Home Page Content) -->
     <div class="app-container">
-        
-        <div style="overflow-y: auto; flex-grow: 1; padding-bottom: 20px;">
+
+        <!-- Scrollable Main Content Wrapper (Fixed banner & cutting issue) -->
+        <div class="main-scroll-content" style="overflow-y: auto; flex-grow: 1; padding-bottom: 20px;">
+            
             <!-- Top Header -->
-            <div class="app-header">
+            <div class="app-header" style="margin-top: 10px;">
                 <h1>Soheb Coaching</h1>
                 <div class="avatar-badge">SC</div>
             </div>
@@ -276,15 +43,16 @@
                 <input type="text" placeholder="Search students, teachers, records...">
             </div>
 
-            <!-- Banners -->
+            <!-- Scrollable Banners -->
             <div class="banner-scroll-container">
                 <div class="banner-card banner-1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://i.ibb.co/rKtgMPpm/file-0000000009f48211b04cd31da444a947.png'); background-size: cover; background-position: center;">
-                    <span class="banner-tag">Featured</span>
-                    <div class="banner-content">
-                        <h3>Excellence in Education</h3>
-                        <p>Join Soheb Coaching</p>
-                    </div>
-                </div>
+    <span class="banner-tag">Featured</span>
+    <div class="banner-content">
+        <h3>Excellence in Education</h3>
+        <p>Join Soheb Coaching</p>
+    </div>
+</div>
+
                 <div class="banner-card banner-2">
                     <span class="banner-tag">Advanced</span>
                     <div class="banner-content">
@@ -294,17 +62,18 @@
                 </div>
             </div>
 
-            <!-- Section Title -->
+            <!-- Statements & Control Section -->
             <h2 class="section-title">Statements & Control</h2>
             
-            <!-- Grid Menu Cards -->
             <div class="grid-menu">
-                <!-- Teacher Statements -->
+                <!-- Teacher Statements Card -->
                 <div class="light-card blue-tint" onclick="window.location.href='teachers.html'">
                     <div class="illustration-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 3.13C16.8604 3.3516 17.6207 3.85186 18.1637 4.55233C18.7067 5.25281 19.0016 6.11372 19.0016 7C19.0016 7.88628 18.7067 8.74719 18.1637 9.44767C17.6207 10.1481 16.8604 10.6484 16 10.87" stroke="#0071e3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <div class="card-text">
@@ -313,12 +82,13 @@
                     </div>
                 </div>
 
-                <!-- Student Statements -->
+                <!-- Student Statements Card -->
                 <div class="light-card green-tint" onclick="window.location.href='students.html'">
                     <div class="illustration-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22 10V18C22 18.5304 21.7893 19.0391 21.4142 19.4142C21.0391 19.7893 20.5304 20 20 20H4C3.46957 20 2.96086 19.7893 2.58579 19.4142C2.21071 19.0391 2 18.5304 2 18V10" stroke="#34c759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#34c759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 12V16" stroke="#34c759" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
                     <div class="card-text">
@@ -327,7 +97,7 @@
                     </div>
                 </div>
 
-                <!-- Result Reports -->
+                <!-- Result Reports Card -->
                 <div class="light-card orange-tint" onclick="window.location.href='result-report.html'">
                     <div class="illustration-box" style="color: #ff9500;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -341,9 +111,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <!-- Bottom Navigation -->
+        <!-- Light Bottom Navigation (Fixed at bottom nicely) -->
         <div class="light-nav">
             <a href="index.html" class="nav-item active">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -362,21 +133,26 @@
 
     </div>
 
-    <!-- Script -->
+    <!-- JavaScript to handle splash screen only once per session -->
     <script>
         if (sessionStorage.getItem('splashShown')) {
             const splash = document.getElementById('splash-screen');
-            if (splash) splash.style.display = 'none';
+            if (splash) {
+                splash.style.display = 'none';
+            }
         } else {
             sessionStorage.setItem('splashShown', 'true');
             setTimeout(function() {
                 const splash = document.getElementById('splash-screen');
                 if (splash) {
                     splash.style.opacity = '0';
-                    setTimeout(() => splash.style.display = 'none', 500);
+                    setTimeout(function() {
+                        splash.style.display = 'none';
+                    }, 500);
                 }
             }, 1800);
         }
     </script>
+
 </body>
 </html>
