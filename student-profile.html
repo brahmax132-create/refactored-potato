@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soheb Coaching - Student Profile</title>
+    <style>
+        body {
+            background-color: #f5f5f7 !important;
+            color: #1d1d1f !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .app-container {
+            background-color: #ffffff !important;
+            color: #1d1d1f !important;
+            min-height: 100vh;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            padding-bottom: 90px;
+        }
+        .app-view {
+            padding: 16px;
+        }
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-top: 10px;
+        }
+        .app-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+        .back-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f5f5f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+        }
+        .profile-header-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #fbfbfd;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        .profile-avatar-large {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .profile-avatar-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-details h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin: 0 0 4px 0;
+        }
+        .profile-details p {
+            font-size: 13px;
+            color: #86868b;
+            margin: 0 0 2px 0;
+        }
+        .profile-address {
+            font-size: 12px;
+            color: #515154;
+            margin-top: 6px;
+        }
+        .reports-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .report-card {
+            border-radius: 18px;
+            padding: 16px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .attendance-bg {
+            background-color: #e3ecf8;
+            border: 1px solid rgba(0, 113, 227, 0.15);
+        }
+        .bill-bg {
+            background-color: #e4f2ea;
+            border: 1px solid rgba(52, 199, 89, 0.15);
+        }
+        .report-card h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0;
+        }
+        .arrow-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d1d1f;
+            align-self: flex-end;
+        }
+        .light-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+        }
+        .nav-item {
+            color: #86868b;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            gap: 3px;
+        }
+        .nav-item.active {
+            color: #0071e3;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-view">
+            <div class="app-header">
+                <a href="students.html" class="back-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <h1>Student Profile</h1>
+                <div style="width: 36px;"></div>
+            </div>
+
+            <div class="profile-header-card">
+                <div class="profile-avatar-large">
+                    <img id="prof-img" src="" alt="Student">
+                </div>
+                <div class="profile-details">
+                    <h2 id="prof-name">Name</h2>
+                    <p id="prof-meta">Grade &bull; Roll</p>
+                    <p id="prof-joined">Joined date</p>
+                    <div class="profile-address" id="prof-address">Address</div>
+                </div>
+            </div>
+
+            <div style="font-size: 17px; font-weight: 700; color: #1d1d1f; margin-bottom: 12px;">Reports Hub</div>
+
+            <div class="reports-grid">
+                <a href="attendance.html" class="report-card attendance-bg">
+                    <h3>Attendance<br>Report</h3>
+                    <div class="arrow-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </div>
+                </a>
+                <a href="bill.html" class="report-card bill-bg">
+                    <h3>Bill<br>Statement</h3>
+                    <div class="arrow-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="light-nav">
+            <a href="index.html" class="nav-item active">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Home
+            </a>
+            <a href="ai-chat.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Aura AI
+            </a>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            let data = JSON.parse(localStorage.getItem('selected_student'));
+            if(data) {
+                document.getElementById('prof-name').innerText = data.name;
+                document.getElementById('prof-meta').innerHTML = `${data.grade} &bull; Roll: ${data.roll}`;
+                document.getElementById('prof-joined').innerText = `Joined: ${data.joined}`;
+                document.getElementById('prof-address').innerText = data.address;
+                document.getElementById('prof-img').src = data.img;
+            }
+        }
+    </script>
+</body>
+</html>
+
