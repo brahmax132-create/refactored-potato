@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soheb Coaching - All Teachers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme-body">
+
+    <!-- Apple Mockup App Container -->
+    <div class="app-container">
+
+        <!-- Top Header Navigation with Pure Apple Back Arrow -->
+        <div class="top-nav-bar">
+            <a href="index.html" class="apple-back-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 19L8 12L15 5" stroke="#0a84ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Title Section -->
+        <div class="page-title-container">
+            <h1>All Teachers</h1>
+        </div>
+
+        <!-- Search Bar with Live Filtering -->
+        <div class="search-container">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search teachers, subjects..." onkeyup="searchTeachers()">
+        </div>
+
+        <!-- Teachers List Section -->
+        <div class="records-list" id="teachersList">
+            
+            <!-- Teacher 1 -->
+            <div class="student-card teacher-item">
+                <div class="student-avatar">
+                    <!-- Yahan baad mein apni real teacher ki photo ka link ya path daal sakte ho -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Teacher">
+                </div>
+                <div class="student-info">
+                    <h4>Mr. Rohit Sharma</h4>
+                    <p>Mathematics</p>
+                    <span class="join-date">Joined: 15 Jan 2022</span>
+                </div>
+                <div class="chevron-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Teacher 2 -->
+            <div class="student-card teacher-item">
+                <div class="student-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Teacher">
+                </div>
+                <div class="student-info">
+                    <h4>Ms. Priya Singh</h4>
+                    <p>Physics & Chemistry</p>
+                    <span class="join-date">Joined: 01 Mar 2022</span>
+                </div>
+                <div class="chevron-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Teacher 3 -->
+            <div class="student-card teacher-item">
+                <div class="student-avatar">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Teacher">
+                </div>
+                <div class="student-info">
+                    <h4>Mr. Vikram Patel</h4>
+                    <p>Biology & Botany</p>
+                    <span class="join-date">Joined: 10 May 2022</span>
+                </div>
+                <div class="chevron-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Light Bottom Navigation -->
+        <div class="light-nav">
+            <a href="home.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="ai-chat.html" class="nav-item">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Aura AI</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Live Search JavaScript -->
+    <script>
+        function searchTeachers() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('teacher-item');
+
+            for (let i = 0; i < cards.length; i++) {
+                let text = cards[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+
